@@ -1,6 +1,6 @@
 # vaultwarden_HTTPS_local
 
-this tutorial shows how to run a Vaultwarden installation encrypted only on your own network.
+This tutorial shows how to run a Vaultwarden installation encrypted only on your own network with iOS integration.
 
 I use a Raspberry Pi 3, but also works on other devices.
 
