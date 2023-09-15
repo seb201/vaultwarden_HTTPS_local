@@ -36,7 +36,7 @@ Common Name (e.g. server FQDN or YOUR name) []:vaultwarden.de
 Email Address []:test@test.de
 Please enter the following 'extra' attributes
 to be sent with your certificate request
-A challenge password []:c2fjWzoyZx3drE9
+A challenge password []:*************
 An optional company name []:
 ```
 
