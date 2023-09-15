@@ -72,15 +72,15 @@ docker run -d --name vaultwarden \
   vaultwarden/server:latest
 ```
 
-12. Start the browser and open 
+12. Now you need to set up a local dns forwarding. Some routers can do this. But you can also use a Pi-hole or AdGuard system. If you now enter vaultwarden.de in the local network, you will not land on the vaultwarden.de website but will be redirected to our local Vaultwarden instance. This step is necessary for iOS to accept our self generated certificate.
+<img width="1303" alt="Bildschirmfoto 2021-10-03 um 11 00 16" src="https://user-images.githubusercontent.com/35576062/136704505-df5a54b0-c4b6-42ee-a034-c7abb471f607.png">
+
+13. Start the browser and open 
 ```
 https://vaultwarden.de:4430
 ```
 
-13. Go through the setup
-
-14. Now you need to set up a local dns forwarding. Some routers can do this. But you can also use a Pi-hole or AdGuard system. If you now enter vaultwarden.de in the local network, you will not land on the vaultwarden.de website but will be redirected to our local Vaultwarden instance. This step is necessary for iOS to accept our self generated certificate.
-<img width="1303" alt="Bildschirmfoto 2021-10-03 um 11 00 16" src="https://user-images.githubusercontent.com/35576062/136704505-df5a54b0-c4b6-42ee-a034-c7abb471f607.png">
+14. Go through the setup
 
 
 **Install the self-signed certificate on your iOS Device**<br/>
