@@ -25,7 +25,7 @@ Common Name (e.g. server FQDN or YOUR name) []:vaultwarden.de
 Email Address []:test@test.de
 ```
 
-5. openssl req -new -key bitwarden.key -out bitwarden.csr
+5. openssl req -new -key private-ca.key -out bitwarden.csr
 ```
 Country Name (2 letter code) [AU]:DE
 State or Province Name (full name) [Some-State]:DE
