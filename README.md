@@ -112,6 +112,9 @@ https://vaultwarden.de:4430
 More information:
 
 https://www.reddit.com/r/Bitwarden/comments/ep9qyz/self_signed_certs_iosmacos_issue_solved/
+
 https://github.com/dani-garcia/vaultwarden/wiki/Private-CA-and-self-signed-certs-that-work-with-Chrome
+
 https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development
+
 https://github.com/dani-garcia/vaultwarden/wiki/Enabling-HTTPS
