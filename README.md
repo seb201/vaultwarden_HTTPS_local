@@ -56,10 +56,11 @@ DNS.2 = www.vaultwarden.de
 
 7. Save the file with CMD+X, accept with Y+ENTER (or J+ENTER)
 8. openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out bitwarden.crt -days 720 -sha256 -extfile bitwarden.ext
-9. mv bitwarden.key bitwarden_key.pem
-10. mv bitwarden.crt bitwarden_cert.pem
+9. openssl genpkey -algorithm RSA -out bitwarden.key -outform PEM -pkeyopt rsa_keygen_bits:2048
+10. mv bitwarden.key bitwarden_key.pem
+11. mv bitwarden.crt bitwarden_cert.pem
 
-11. Now we can start the Docker Container
+12. Now we can start the Docker Container
 ```
 docker run -d --name vaultwarden \
   -e ROCKET_TLS='{certs="/ssl/bitwarden_cert.pem",key="/ssl/bitwarden_key.pem"}' \
