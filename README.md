@@ -8,19 +8,15 @@ My username is pi, when your name is not pi change pi in the follow commands
 
 Type in:
 1. cd /home/pi
-2. mkdir ssl
-3. cd ssl
+2. mkdir Docker/ssl
+3. cd Docker/ssl
  
 ```
 openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt rsa_keygen_bits:2048
 ```
-
-```
-openssl req -x509 -new -nodes -sha256 -days 3650 -key private-ca.key -out self-signed-ca-cert.crt
-```
-
 Now answer the questions. Actually, it doesn't matter what you enter here. The only thing that matters here is Common Name.
 You can also use another Common Name like vaultwarden.com or mypassword.com
+
 ```
 Country Name (2 letter code) [AU]:DE
 State or Province Name (full name) [Some-State]:DE
@@ -29,9 +25,14 @@ Organization Name (eg, company) [Internet Widgits Pty Ltd]:ROOT
 Organizational Unit Name (eg, section) []:ROOT
 Common Name (e.g. server FQDN or YOUR name) []:vaultwarden.de
 Email Address []:test@test.de
-```
 
-5. openssl req -new -key private-ca.key -out bitwarden.csr
+```
+```
+openssl req -x509 -new -nodes -sha256 -days 3650 -key private-ca.key -out self-signed-ca-cert.crt
+```
+```
+openssl genpkey -algorithm RSA -out bitwarden.key -outform PEM -pkeyopt rsa_keygen_bits:2048
+```
 ```
 Country Name (2 letter code) [AU]:DE
 State or Province Name (full name) [Some-State]:DE
