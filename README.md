@@ -10,24 +10,24 @@ Type in:
 1. cd /home/pi
 2. mkdir Docker/ssl
 3. cd Docker/ssl
-4.Create a CA key (your own little on-premise Certificate Authority):
+4. Create a CA key (your own little on-premise Certificate Authority):
 ```
 openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt rsa_keygen_bits:2048
 ```
 Now answer the questions. Actually, it doesn't matter what you enter here. The only thing that matters here is Common Name.
 You can also use another Common Name like vaultwarden.com or mypassword.com
 
-5.Create a CA certificate:
+5. Create a CA certificate:
 ```
 openssl req -x509 -new -nodes -sha256 -days 3650 -key private-ca.key -out self-signed-ca-cert.crt
 ```
 Note: the -nodes argument prevents setting a pass-phrase for the private key (key pair) in a test/safe environment, otherwise you'll have to input the pass-phrase every time you start/restart the server.
 
-6.Create a bitwarden key:
+6. Create a bitwarden key:
 ```
 openssl genpkey -algorithm RSA -out bitwarden.key -outform PEM -pkeyopt rsa_keygen_bits:2048
 ```
-7.Create the bitwarden certificate request file:
+7. Create the bitwarden certificate request file:
 ```
 openssl req -new -key bitwarden.key -out bitwarden.csr
 ```
