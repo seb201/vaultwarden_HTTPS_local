@@ -115,3 +115,8 @@ https://github.com/dani-garcia/vaultwarden/wiki/Private-CA-and-self-signed-certs
 https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development
 
 https://github.com/dani-garcia/vaultwarden/wiki/Enabling-HTTPS
+
+Backup your Vaultwarden Data:
+
+https://github.com/dani-garcia/vaultwarden/wiki/Backing-up-your-vault#restoring-backup-data
+
