@@ -10,9 +10,11 @@ Type in:
 1. cd /home/pi
 2. mkdir ssl
 3. cd ssl
-3. openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -aes128 -pkeyopt rsa_keygen_bits:2048
-4. openssl req -x509 -new -nodes -sha256 -days 720 -key private-ca.key -out self-signed-ca-cert.crt
  
+```
+openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt rsa_keygen_bits:2048
+```
+
 Now answer the questions. Actually, it doesn't matter what you enter here. The only thing that matters here is Common Name.
 You can also use another Common Name like vaultwarden.com or mypassword.com
 ```
