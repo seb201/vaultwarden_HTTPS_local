@@ -53,7 +53,7 @@ openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-c
 ```
 Note: As of April 2019 iOS 13+ and macOS 15+, the server certificate can not have an expiry > 825 and must include ExtendedKeyUsage extension https://support.apple.com/en-us/HT210176
 
-10. Now we can create a Docker Compose File:
+11. Now we can create a Docker Compose File:
 ```
 version: '3'
 
@@ -75,25 +75,25 @@ volumes:
   bw-data:
 ```
 
-11. Now you need to set up a local dns forwarding. Some routers can do this. But you can also use a Pi-hole or AdGuard system. If you now enter vaultwarden.de in the local network, you will not land on the vaultwarden.de website but will be redirected to our local Vaultwarden instance. This step is necessary for iOS to accept our self generated certificate.
+12. Now you need to set up a local dns forwarding. Some routers can do this. But you can also use a Pi-hole or AdGuard system. If you now enter vaultwarden.de in the local network, you will not land on the vaultwarden.de website but will be redirected to our local Vaultwarden instance. This step is necessary for iOS to accept our self generated certificate.
 <img width="1303" alt="Bildschirmfoto 2021-10-03 um 11 00 16" src="https://user-images.githubusercontent.com/35576062/136704505-df5a54b0-c4b6-42ee-a034-c7abb471f607.png">
 
-12. Start the browser and open 
+13. Start the browser and open 
 ```
 https://vaultwarden.de:4430
 ```
 
-13. Go through the setup
+14. Go through the setup
 
 
 **Install the self-signed certificate on your iOS Device**<br/>
-14. Download the certificates from your Raspberry to your Computer. For example with Filezilla
+15. Download the certificates from your Raspberry to your Computer. For example with Filezilla
 <img width="1312" alt="Bildschirmfoto 2021-10-10 um 19 05 55" src="https://user-images.githubusercontent.com/35576062/136706081-cc06ed86-eb34-40df-b641-cf89d770d2d7.png">
 
-15. Transfer the bitwarden_cert.pem and the bitwarden_key.pem to your iOS Device with AirDrop or Email
+16. Transfer the bitwarden_cert.pem and the bitwarden_key.pem to your iOS Device with AirDrop or Email
 <img width="1223" alt="Bildschirmfoto 2021-10-03 um 10 47 03" src="https://user-images.githubusercontent.com/35576062/136706189-c71b2fcf-e72c-44f8-ab19-279c79c2e6ef.png">
 
-16. Install both Certificates<br/>
+17. Install both Certificates<br/>
 ![IMG_5412](https://user-images.githubusercontent.com/35576062/136706907-fa377009-97e8-4e9e-a2a0-d9c1ee7c3524.PNG)
 ![IMG_5415](https://user-images.githubusercontent.com/35576062/136706911-4022460e-f395-4195-8748-9c032f6deca6.PNG)
 ![IMG_5413](https://user-images.githubusercontent.com/35576062/136706923-dbdba9f5-4977-46f7-b297-f35b28889915.PNG)
@@ -103,10 +103,10 @@ https://vaultwarden.de:4430
 If you have set multiple dns servers, it may not work. Set only the DNS server where the DNS forwarding set up above is enabled<br/>
 ![IMG_5418](https://user-images.githubusercontent.com/35576062/136706225-649f3768-a76a-41b2-b93a-930328a75bfb.PNG)
 
-17. Start the Bitwarden App<br/>
+18. Start the Bitwarden App<br/>
 ![IMG_5416](https://user-images.githubusercontent.com/35576062/136706404-53b463a1-59cb-4195-8711-c50eb2ca9cda.PNG)
 
-18. Enter at server url
+19. Enter at server url
 ```
 https://vaultwarden.de:4430
 ```
