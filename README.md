@@ -10,44 +10,32 @@ Type in:
 1. cd /home/pi
 2. mkdir Docker/ssl
 3. cd Docker/ssl
- 
+
+
+Create a CA key (your own little on-premise Certificate Authority):
 ```
 openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt rsa_keygen_bits:2048
 ```
 Now answer the questions. Actually, it doesn't matter what you enter here. The only thing that matters here is Common Name.
 You can also use another Common Name like vaultwarden.com or mypassword.com
 
-```
-Country Name (2 letter code) [AU]:DE
-State or Province Name (full name) [Some-State]:DE
-Locality Name (eg, city) []:ROOT
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:ROOT
-Organizational Unit Name (eg, section) []:ROOT
-Common Name (e.g. server FQDN or YOUR name) []:vaultwarden.de
-Email Address []:test@test.de
-
-```
+Create a CA certificate:
 ```
 openssl req -x509 -new -nodes -sha256 -days 3650 -key private-ca.key -out self-signed-ca-cert.crt
 ```
+Note: the -nodes argument prevents setting a pass-phrase for the private key (key pair) in a test/safe environment, otherwise you'll have to input the pass-phrase every time you start/restart the server.
+
+Create a bitwarden key:
 ```
 openssl genpkey -algorithm RSA -out bitwarden.key -outform PEM -pkeyopt rsa_keygen_bits:2048
 ```
+Create the bitwarden certificate request file:
 ```
-Country Name (2 letter code) [AU]:DE
-State or Province Name (full name) [Some-State]:DE
-Locality Name (eg, city) []:DE
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:TEST
-Organizational Unit Name (eg, section) []:TEST
-Common Name (e.g. server FQDN or YOUR name) []:vaultwarden.de
-Email Address []:test@test.de
-Please enter the following 'extra' attributes
-to be sent with your certificate request
-A challenge password []:*************
-An optional company name []:
+openssl req -new -key bitwarden.key -out bitwarden.csr
 ```
 
-6. Now create a new text file with nano bitwarden.ext
+
+4. Now create a new text file with nano bitwarden.ext
 ```
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
@@ -62,10 +50,11 @@ DNS.2 = www.vaultwarden.de
 <img width="682" alt="Bildschirmfoto 2021-10-03 um 10 35 00" src="https://user-images.githubusercontent.com/35576062/136704477-37750cc3-0a73-42c9-bc3f-634fd4588f84.png">
 
 7. Save the file with CMD+X, accept with Y+ENTER (or J+ENTER)
-8. openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out bitwarden.crt -days 720 -sha256 -extfile bitwarden.ext
-9. openssl genpkey -algorithm RSA -out bitwarden.key -outform PEM -pkeyopt rsa_keygen_bits:2048
-10. mv bitwarden.key bitwarden_key.pem
-11. mv bitwarden.crt bitwarden_cert.pem
+Create the bitwarden certificate, signed from the root CA:
+```
+openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out bitwarden.crt -days 365 -sha256 -extfile bitwarden.ext
+```
+Note: As of April 2019 iOS 13+ and macOS 15+, the server certificate can not have an expiry > 825 and must include ExtendedKeyUsage extension https://support.apple.com/en-us/HT210176
 
 12. Now we can start the Docker Container
 ```
