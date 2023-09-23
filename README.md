@@ -46,8 +46,8 @@ DNS.2 = www.vaultwarden.de
 <img width="682" alt="Bildschirmfoto 2021-10-03 um 10 35 00" src="https://user-images.githubusercontent.com/35576062/136704477-37750cc3-0a73-42c9-bc3f-634fd4588f84.png">
 
 9. Save the file with CMD+X, accept with Y+ENTER (or J+ENTER)
-10. 
-Create the bitwarden certificate, signed from the root CA:
+ 
+10. Create the bitwarden certificate, signed from the root CA:
 ```
 openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out bitwarden.crt -days 365 -sha256 -extfile bitwarden.ext
 ```
