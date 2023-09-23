@@ -10,32 +10,28 @@ Type in:
 1. cd /home/pi
 2. mkdir Docker/ssl
 3. cd Docker/ssl
-
-
-Create a CA key (your own little on-premise Certificate Authority):
+4.Create a CA key (your own little on-premise Certificate Authority):
 ```
 openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt rsa_keygen_bits:2048
 ```
 Now answer the questions. Actually, it doesn't matter what you enter here. The only thing that matters here is Common Name.
 You can also use another Common Name like vaultwarden.com or mypassword.com
 
-Create a CA certificate:
+5.Create a CA certificate:
 ```
 openssl req -x509 -new -nodes -sha256 -days 3650 -key private-ca.key -out self-signed-ca-cert.crt
 ```
 Note: the -nodes argument prevents setting a pass-phrase for the private key (key pair) in a test/safe environment, otherwise you'll have to input the pass-phrase every time you start/restart the server.
 
-Create a bitwarden key:
+6.Create a bitwarden key:
 ```
 openssl genpkey -algorithm RSA -out bitwarden.key -outform PEM -pkeyopt rsa_keygen_bits:2048
 ```
-Create the bitwarden certificate request file:
+7.Create the bitwarden certificate request file:
 ```
 openssl req -new -key bitwarden.key -out bitwarden.csr
 ```
-
-
-4. Now create a new text file with nano bitwarden.ext
+8. Now create a new text file with nano bitwarden.ext
 ```
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
@@ -49,44 +45,54 @@ DNS.2 = www.vaultwarden.de
 ```
 <img width="682" alt="Bildschirmfoto 2021-10-03 um 10 35 00" src="https://user-images.githubusercontent.com/35576062/136704477-37750cc3-0a73-42c9-bc3f-634fd4588f84.png">
 
-7. Save the file with CMD+X, accept with Y+ENTER (or J+ENTER)
+9. Save the file with CMD+X, accept with Y+ENTER (or J+ENTER)
 Create the bitwarden certificate, signed from the root CA:
 ```
 openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out bitwarden.crt -days 365 -sha256 -extfile bitwarden.ext
 ```
 Note: As of April 2019 iOS 13+ and macOS 15+, the server certificate can not have an expiry > 825 and must include ExtendedKeyUsage extension https://support.apple.com/en-us/HT210176
 
-12. Now we can start the Docker Container
+10. Now we can create a Docker Compose File:
 ```
-docker run -d --name vaultwarden \
-  -e ROCKET_TLS='{certs="/ssl/bitwarden_cert.pem",key="/ssl/bitwarden_key.pem"}' \
-  -e ADMIN_TOKEN=qVPNmv1hoqFMSAQuUCAF8Ctwr73t4ptP8SY4E8kYJoon42ERiRl7IrytiXEFhM/6 \
-  -v /home/pi/ssl/:/ssl/ \
-  -v bw-data:/data/ \
-  -p 4430:80 \
-  --restart unless-stopped \
-  vaultwarden/server:latest
+version: '3'
+
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    environment:
+      ROCKET_TLS: '{certs="/ssl/bitwarden.crt",key="/ssl/bitwarden.key"}'
+      ADMIN_TOKEN: your_own_token
+    volumes:
+      - /home/pi/Docker/ssl/:/ssl/
+      - bw-data:/data/
+    ports:
+      - "4430:80"
+    restart: unless-stopped
+
+volumes:
+  bw-data:
 ```
 
-12. Now you need to set up a local dns forwarding. Some routers can do this. But you can also use a Pi-hole or AdGuard system. If you now enter vaultwarden.de in the local network, you will not land on the vaultwarden.de website but will be redirected to our local Vaultwarden instance. This step is necessary for iOS to accept our self generated certificate.
+11. Now you need to set up a local dns forwarding. Some routers can do this. But you can also use a Pi-hole or AdGuard system. If you now enter vaultwarden.de in the local network, you will not land on the vaultwarden.de website but will be redirected to our local Vaultwarden instance. This step is necessary for iOS to accept our self generated certificate.
 <img width="1303" alt="Bildschirmfoto 2021-10-03 um 11 00 16" src="https://user-images.githubusercontent.com/35576062/136704505-df5a54b0-c4b6-42ee-a034-c7abb471f607.png">
 
-13. Start the browser and open 
+12. Start the browser and open 
 ```
 https://vaultwarden.de:4430
 ```
 
-14. Go through the setup
+13. Go through the setup
 
 
 **Install the self-signed certificate on your iOS Device**<br/>
-15. Download the certificates from your Raspberry to your Computer. For example with Filezilla
+14. Download the certificates from your Raspberry to your Computer. For example with Filezilla
 <img width="1312" alt="Bildschirmfoto 2021-10-10 um 19 05 55" src="https://user-images.githubusercontent.com/35576062/136706081-cc06ed86-eb34-40df-b641-cf89d770d2d7.png">
 
-16. Transfer the bitwarden_cert.pem and the bitwarden_key.pem to your iOS Device with AirDrop or Email
+15. Transfer the bitwarden_cert.pem and the bitwarden_key.pem to your iOS Device with AirDrop or Email
 <img width="1223" alt="Bildschirmfoto 2021-10-03 um 10 47 03" src="https://user-images.githubusercontent.com/35576062/136706189-c71b2fcf-e72c-44f8-ab19-279c79c2e6ef.png">
 
-17. Install both Certificates<br/>
+16. Install both Certificates<br/>
 ![IMG_5412](https://user-images.githubusercontent.com/35576062/136706907-fa377009-97e8-4e9e-a2a0-d9c1ee7c3524.PNG)
 ![IMG_5415](https://user-images.githubusercontent.com/35576062/136706911-4022460e-f395-4195-8748-9c032f6deca6.PNG)
 ![IMG_5413](https://user-images.githubusercontent.com/35576062/136706923-dbdba9f5-4977-46f7-b297-f35b28889915.PNG)
@@ -96,10 +102,10 @@ https://vaultwarden.de:4430
 If you have set multiple dns servers, it may not work. Set only the DNS server where the DNS forwarding set up above is enabled<br/>
 ![IMG_5418](https://user-images.githubusercontent.com/35576062/136706225-649f3768-a76a-41b2-b93a-930328a75bfb.PNG)
 
-18. Start the Bitwarden App<br/>
+17. Start the Bitwarden App<br/>
 ![IMG_5416](https://user-images.githubusercontent.com/35576062/136706404-53b463a1-59cb-4195-8711-c50eb2ca9cda.PNG)
 
-19. Enter at server url
+18. Enter at server url
 ```
 https://vaultwarden.de:4430
 ```
