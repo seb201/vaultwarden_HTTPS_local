@@ -2,14 +2,14 @@
 
 This tutorial shows how to run a Vaultwarden installation encrypted only on your own network with iOS integration.
 
-I use a Raspberry Pi 3, but also works on other devices.
+I use a Raspberry Pi 3 and a Intel NUC (Ubuntu Server), but also works on other devices.
 
 My username is pi, when your name is not pi change pi in the follow commands
 
 Type in:
-1. cd /home/pi
-2. mkdir Docker/ssl
-3. cd Docker/ssl
+1. ``cd /home/pi``
+2. ``mkdir Docker/ssl``
+3. ``cd Docker/ssl``
 4. Create a CA key (your own little on-premise Certificate Authority):
 ```
 openssl genpkey -algorithm RSA -aes128 -out private-ca.key -outform PEM -pkeyopt rsa_keygen_bits:2048
@@ -31,7 +31,7 @@ openssl genpkey -algorithm RSA -out bitwarden.key -outform PEM -pkeyopt rsa_keyg
 ```
 openssl req -new -key bitwarden.key -out bitwarden.csr
 ```
-8. Now create a new text file with nano bitwarden.ext
+8. Now create a new text file with ``nano bitwarden.ext``
 ```
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
@@ -86,7 +86,7 @@ https://vaultwarden.de:4430
 14. Go through the setup
 
 
-**Install the self-signed certificate on your iOS Device**<br/>
+**Install the self-signed certificate on your iOS/MacOS Device**<br/>
 15. Download the certificates from your Raspberry to your Computer. For example with Filezilla
 <img width="1312" alt="Bildschirmfoto 2021-10-10 um 19 05 55" src="https://user-images.githubusercontent.com/35576062/136706081-cc06ed86-eb34-40df-b641-cf89d770d2d7.png">
 
@@ -94,36 +94,34 @@ https://vaultwarden.de:4430
 <img width="1223" alt="Bildschirmfoto 2021-10-03 um 10 47 03" src="https://user-images.githubusercontent.com/35576062/136706189-c71b2fcf-e72c-44f8-ab19-279c79c2e6ef.png">
 
 17. Install both Certificates<br/>
-![IMG_5412](https://user-images.githubusercontent.com/35576062/136706907-fa377009-97e8-4e9e-a2a0-d9c1ee7c3524.PNG)
-![IMG_5415](https://user-images.githubusercontent.com/35576062/136706911-4022460e-f395-4195-8748-9c032f6deca6.PNG)
-![IMG_5413](https://user-images.githubusercontent.com/35576062/136706923-dbdba9f5-4977-46f7-b297-f35b28889915.PNG)
-![IMG_5414](https://user-images.githubusercontent.com/35576062/136706925-965cbe1f-49f8-4b95-85cf-d05189187405.PNG)
+![Mittel (136706907-fa377009-97e8-4e9e-a2a0-d9c1ee7c3524)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/fa2cbb98-218d-41d9-b07b-7f1faad551e0)
+![Mittel (136706911-4022460e-f395-4195-8748-9c032f6deca6)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/d732927a-2e25-4348-a7f3-4e247052880d)
+![Mittel (136706923-dbdba9f5-4977-46f7-b297-f35b28889915)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/91b4bfd5-f18f-426e-b9e1-b5bb569b5863)
+![Mittel (136706925-965cbe1f-49f8-4b95-85cf-d05189187405)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/ddef15bb-1ed0-4d11-9b45-58656eac3904)<br/>
+
+On MacOS you can import the Certificates via the Keychain App.
 
 
 If you have set multiple dns servers, it may not work. Set only the DNS server where the DNS forwarding set up above is enabled<br/>
-![IMG_5418](https://user-images.githubusercontent.com/35576062/136706225-649f3768-a76a-41b2-b93a-930328a75bfb.PNG)
+![Mittel (136706225-649f3768-a76a-41b2-b93a-930328a75bfb)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/cfb815ac-c9a1-4726-93ed-c795db765548)
 
 18. Start the Bitwarden App<br/>
-![IMG_5416](https://user-images.githubusercontent.com/35576062/136706404-53b463a1-59cb-4195-8711-c50eb2ca9cda.PNG)
+![Mittel (136706404-53b463a1-59cb-4195-8711-c50eb2ca9cda)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/613f7528-301c-4575-a846-999f3e77e233)
 
-19. Enter at server url
+19. Enter at **Server URL**
 ```
 https://vaultwarden.de:4430
 ```
-![IMG_5438](https://user-images.githubusercontent.com/35576062/136706415-3034c4a2-c914-497c-bee1-ed64bf6963ac.PNG)
+![Mittel (136706415-3034c4a2-c914-497c-bee1-ed64bf6963ac)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/ccf4fcc7-7287-41c9-a5c5-528bddd20d94)
 
 
-More information:
+**More information:**
 
-https://www.reddit.com/r/Bitwarden/comments/ep9qyz/self_signed_certs_iosmacos_issue_solved/
-
-https://github.com/dani-garcia/vaultwarden/wiki/Private-CA-and-self-signed-certs-that-work-with-Chrome
-
-https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development
-
-https://github.com/dani-garcia/vaultwarden/wiki/Enabling-HTTPS
+- https://www.reddit.com/r/Bitwarden/comments/ep9qyz/self_signed_certs_iosmacos_issue_solved/
+- https://github.com/dani-garcia/vaultwarden/wiki/Private-CA-and-self-signed-certs-that-work-with-Chrome
+- https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development
+- https://github.com/dani-garcia/vaultwarden/wiki/Enabling-HTTPS
 
 Backup your Vaultwarden Data:
-
-https://github.com/dani-garcia/vaultwarden/wiki/Backing-up-your-vault#restoring-backup-data
+- https://github.com/dani-garcia/vaultwarden/wiki/Backing-up-your-vault#restoring-backup-data
 
