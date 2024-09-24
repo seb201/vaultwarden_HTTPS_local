@@ -53,6 +53,9 @@ openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-c
 ```
 Note: As of April 2019 iOS 13+ and macOS 15+, the server certificate can not have an expiry > 825 and must include ExtendedKeyUsage extension https://support.apple.com/en-us/HT210176
 
+I use 365 Days.
+<br/>
+<br/>
 11. Now we can create a Docker Compose File:
 ```
 version: '3'
