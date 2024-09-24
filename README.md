@@ -104,7 +104,6 @@ https://vaultwarden.de:4430
 ![Mittel (136706925-965cbe1f-49f8-4b95-85cf-d05189187405)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/ddef15bb-1ed0-4d11-9b45-58656eac3904)<br/>
 
 On MacOS you can import the Certificates via the Keychain App.
-![Bildschirmfoto 2024-02-14 um 17 51 21](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/35c76915-0a58-44f3-a64a-f91e608ae5d3)
 <img width="670" alt="Bildschirmfoto 2024-09-24 um 17 14 42" src="https://github.com/user-attachments/assets/1b75d76d-2a76-4c6e-a922-578d6a6cfa18">
 
 
