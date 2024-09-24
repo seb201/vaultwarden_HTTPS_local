@@ -105,9 +105,10 @@ https://vaultwarden.de:4430
 
 On MacOS you can import the Certificates via the Keychain App.
 ![Bildschirmfoto 2024-02-14 um 17 51 21](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/35c76915-0a58-44f3-a64a-f91e608ae5d3)
+<img width="670" alt="Bildschirmfoto 2024-09-24 um 17 14 42" src="https://github.com/user-attachments/assets/1b75d76d-2a76-4c6e-a922-578d6a6cfa18">
 
-18.
-If you have set multiple dns servers, it may not work. Set only the DNS server where the DNS forwarding set up above is enabled<br/>
+
+18. If you have set multiple dns servers, it may not work. Set only the DNS server where the DNS forwarding set up above is enabled<br/>
 ![Mittel (136706225-649f3768-a76a-41b2-b93a-930328a75bfb)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/cfb815ac-c9a1-4726-93ed-c795db765548)
 
 19. Start the Bitwarden App<br/>
