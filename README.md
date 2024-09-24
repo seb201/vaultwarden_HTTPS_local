@@ -119,6 +119,9 @@ https://vaultwarden.de:4430
 ```
 ![Mittel (136706415-3034c4a2-c914-497c-bee1-ed64bf6963ac)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/ccf4fcc7-7287-41c9-a5c5-528bddd20d94)
 
+21. What to do if the certificate has expired?
+Repeat steps 10 and 15 to 17. Delete the old certificate on the devices (not the root certificate!!!).
+
 
 **More information:**
 
