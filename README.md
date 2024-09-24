@@ -106,14 +106,14 @@ https://vaultwarden.de:4430
 On MacOS you can import the Certificates via the Keychain App.
 ![Bildschirmfoto 2024-02-14 um 17 51 21](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/35c76915-0a58-44f3-a64a-f91e608ae5d3)
 
-
+18.
 If you have set multiple dns servers, it may not work. Set only the DNS server where the DNS forwarding set up above is enabled<br/>
 ![Mittel (136706225-649f3768-a76a-41b2-b93a-930328a75bfb)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/cfb815ac-c9a1-4726-93ed-c795db765548)
 
-18. Start the Bitwarden App<br/>
+19. Start the Bitwarden App<br/>
 ![Mittel (136706404-53b463a1-59cb-4195-8711-c50eb2ca9cda)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/613f7528-301c-4575-a846-999f3e77e233)
 
-19. Enter at **Server URL**
+20. Enter at **Server URL**
 ```
 https://vaultwarden.de:4430
 ```
