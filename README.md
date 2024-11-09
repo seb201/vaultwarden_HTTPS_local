@@ -109,6 +109,7 @@ https://vaultwarden.de:4430
 On MacOS you can import the Certificates via the Keychain App.
 <img width="670" alt="Bildschirmfoto 2024-09-24 um 17 14 42" src="https://github.com/user-attachments/assets/1b75d76d-2a76-4c6e-a922-578d6a6cfa18">
 
+Both certificates should be trusted.
 
 18. If you have set multiple dns servers, it may not work. Set only the DNS server where the DNS forwarding set up above is enabled<br/>
 ![Mittel (136706225-649f3768-a76a-41b2-b93a-930328a75bfb)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/cfb815ac-c9a1-4726-93ed-c795db765548)
@@ -132,12 +133,12 @@ If you have renewed the certificate, it can happen that the Firefox Bitwarden ad
 1. Go to the Firefox settings and delete all cookies, website data and the cache under Privacy and security under Cookies and website data.
 <img width="600" alt="Bildschirmfoto 2024-11-09 um 15 43 16" src="https://github.com/user-attachments/assets/0a03620a-5eec-4219-b71f-07c5c2132a0e">
 
-3. Go to Privacy and Security and click on Show certificates under Certificates. Then search for the entry Vaultwarden under Server and delete it. Now click on Add exceptions and enter https://vaultwarden.de:4430/ (or your correct address). Now download the certificate. If this fails, there is something wrong with your certificates.
+2. Go to Privacy and Security and click on Show certificates under Certificates. Then search for the entry Vaultwarden under Server and delete it. Now click on Add exceptions and enter https://vaultwarden.de:4430/ (or your correct address). Now download the certificate. If this fails, there is something wrong with your certificates.
 <img width="600" alt="Bildschirmfoto 2024-11-09 um 15 40 19" src="https://github.com/user-attachments/assets/9477ed25-eaf8-4a76-b38c-66d1d095e1dd">
 <img width="600" alt="Bildschirmfoto 2024-11-09 um 15 41 08" src="https://github.com/user-attachments/assets/9fee2aae-0aba-4e73-b3a3-881c6e63c8d3">
 <img width="600" alt="Bildschirmfoto 2024-11-09 um 15 42 11" src="https://github.com/user-attachments/assets/4f52b368-ecbc-4d7b-af7f-ef795c12ad9e">
 
-5. It can't hurt to delete the Firefox addon from Bitwarden, restart Firefox and reinstall the addon.
+3. It can't hurt to delete the Firefox addon from Bitwarden, restart Firefox and reinstall the addon.
 
 
 
