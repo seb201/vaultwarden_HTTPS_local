@@ -127,6 +127,19 @@ https://vaultwarden.de:4430
 
 Repeat steps 10 and 15 to 17. Delete the old certificate on the devices (not the root certificate!!!).
 <br/>
+<br/>
+If you have renewed the certificate, it can happen that the Firefox Bitwarden add-on can no longer establish a connection to the server. The following must be done:
+1. Go to the Firefox settings and delete all cookies, website data and the cache under Privacy and security under Cookies and website data.
+<img width="600" alt="Bildschirmfoto 2024-11-09 um 15 43 16" src="https://github.com/user-attachments/assets/0a03620a-5eec-4219-b71f-07c5c2132a0e">
+
+3. Go to Privacy and Security and click on Show certificates under Certificates. Then search for the entry Vaultwarden under Server and delete it. Now click on Add exceptions and enter https://vaultwarden.de:4430/ (or your correct address). Now download the certificate. If this fails, there is something wrong with your certificates.
+<img width="600" alt="Bildschirmfoto 2024-11-09 um 15 40 19" src="https://github.com/user-attachments/assets/9477ed25-eaf8-4a76-b38c-66d1d095e1dd">
+<img width="600" alt="Bildschirmfoto 2024-11-09 um 15 41 08" src="https://github.com/user-attachments/assets/9fee2aae-0aba-4e73-b3a3-881c6e63c8d3">
+<img width="600" alt="Bildschirmfoto 2024-11-09 um 15 42 11" src="https://github.com/user-attachments/assets/4f52b368-ecbc-4d7b-af7f-ef795c12ad9e">
+
+5. It can't hurt to delete the Firefox addon from Bitwarden, restart Firefox and reinstall the addon.
+
+
 
 **More information:**
 
