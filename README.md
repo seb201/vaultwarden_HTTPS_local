@@ -123,24 +123,29 @@ https://vaultwarden.de:4430
 ```
 ![Mittel (136706415-3034c4a2-c914-497c-bee1-ed64bf6963ac)](https://github.com/seb201/vaultwarden_HTTPS_local/assets/35576062/ccf4fcc7-7287-41c9-a5c5-528bddd20d94)
 
-21. What to do if the certificate has expired?
-
-
-Repeat steps 10 and 15 to 17. Delete the old certificate on the devices (not the root certificate!!!).
+## What to do if the certificate has expired?
 <br/>
+- Delete the old bitwarden.crt file. (cd /home/pi/Docker/ssl/)<br/>
+- Create a new one with:
+  
+```
+openssl x509 -req -in bitwarden.csr -CA self-signed-ca-cert.crt -CAkey private-ca.key -CAcreateserial -out bitwarden.crt -days 365 -sha256 -extfile bitwarden.ext
+```
 <br/>
-If you have renewed the certificate, it can happen that the Firefox Bitwarden add-on can no longer establish a connection to the server. The following must be done:
-1. Go to the Firefox settings and delete all cookies, website data and the cache under Privacy and security under Cookies and website data.
-<img width="600" alt="Bildschirmfoto 2024-11-09 um 15 43 16" src="https://github.com/user-attachments/assets/0a03620a-5eec-4219-b71f-07c5c2132a0e">
-
-2. Go to Privacy and Security and click on Show certificates under Certificates. Then search for the entry Vaultwarden under Server and delete it. Now click on Add exceptions and enter https://vaultwarden.de:4430/ (or your correct address). Now download the certificate. If this fails, there is something wrong with your certificates.
-<img width="600" alt="Bildschirmfoto 2024-11-09 um 15 40 19" src="https://github.com/user-attachments/assets/9477ed25-eaf8-4a76-b38c-66d1d095e1dd">
-<img width="600" alt="Bildschirmfoto 2024-11-09 um 15 41 08" src="https://github.com/user-attachments/assets/9fee2aae-0aba-4e73-b3a3-881c6e63c8d3">
-<img width="600" alt="Bildschirmfoto 2024-11-09 um 15 42 11" src="https://github.com/user-attachments/assets/4f52b368-ecbc-4d7b-af7f-ef795c12ad9e">
-
-3. It can't hurt to delete the Firefox addon from Bitwarden, restart Firefox and reinstall the addon.
-
-
+- Enter a passphrase for the root certificate<br/>
+- Use Filezilla to download the new bitwarden.crt to your computer<br/>
+- Restart the Docker container for Vaultwarden<br/>
+- Delete the old certificate from your devices (not the root certificate)<br/>
+- Transfer the new bitwarden.crt to the devices and install it<br/>
+- If you have renewed the certificate, it can happen that the Firefox Bitwarden add-on can no longer establish a connection to the server. The following must be done:<br/>
+- Go to the Firefox settings and delete all cookies, website data and the cache under Privacy and security under Cookies and website data.<br/>
+<img width="600" alt="Bildschirmfoto 2024-11-09 um 15 43 16" src="https://github.com/user-attachments/assets/0a03620a-5eec-4219-b71f-07c5c2132a0e"><br/>
+- Go to Privacy and Security and click on Show certificates under Certificates. Then search for the entry Vaultwarden under Server and delete it. Now click on Add exceptions and enter https://vaultwarden.de:4430/ (or your correct address). Now download the certificate. If this fails, there is something wrong with your certificates.<br/>
+<img width="600" alt="Bildschirmfoto 2024-11-09 um 15 40 19" src="https://github.com/user-attachments/assets/9477ed25-eaf8-4a76-b38c-66d1d095e1dd"><br/>
+<img width="600" alt="Bildschirmfoto 2024-11-09 um 15 41 08" src="https://github.com/user-attachments/assets/9fee2aae-0aba-4e73-b3a3-881c6e63c8d3"><br/>
+<img width="600" alt="Bildschirmfoto 2024-11-09 um 15 42 11" src="https://github.com/user-attachments/assets/4f52b368-ecbc-4d7b-af7f-ef795c12ad9e"><br/>
+- It can't hurt to delete the Firefox addon from Bitwarden, restart Firefox and reinstall the addon.<br/>
+- Restart Firefox<br/><br/>
 
 **More information:**
 
